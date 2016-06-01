@@ -34,3 +34,15 @@ WSGISocketPrefix /var/www/wsgi/
 Alias /artifacts /artifacts
 ```
 
+See that `WSGIPythonHome` thing? That is likely to change because I discarded
+a bunch of pip-installed stuff that was in a `flask` directory, figuring it
+didn't belong in a source repository. It might be reconstructable like this:
+
+```
+cd /var/www/wsgi
+# unpack all this stuff
+virtualenv flask
+source flask/bin/activate
+pip install -r requirements.txt
+deactivate
+```
