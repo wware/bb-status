@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <style>
+    table {
+      width: 100%;
+      border-spacing: 10px 0px;
+      border-collapse: separate;
+    }
+    th {
+      font-size: medium;
+      white-space: nowrap;
+    }
+    td {
+      font-size: medium;
+      white-space: nowrap;
+    }
+    tr td:last-child {
+      width: 100%;
+    }
+    h1 {
+      font-size: medium;
+    }
+    </style>
+  </head>
+  <body>
+    <table>
+    <tr>
+      <th align="left"><u>Worker</u></th>
+      <th align="left"><u>Connection</u></th>
+      <th align="left"><u>Build Type</u></th>
+      <th align="right"><u>Build #</u></th>
+      <th align="left"><u>Step</u></th>
+      <th align="left"><u>Owner</u></th>
+      <th align="left"><u>Enginhost Branch</u></th>
+      <th align="left"><u>Env Branch</u></th>
+      <th align="left"><u>Saf Branch</u></th>
+    </tr>
+    {% for sd in status_data %}
+    <tr>
+      <td align="left">{{ sd.worker }}</td>
+      {% if sd.connected is equalto "connected" %}
+        <td align="left"><font color="green">{{ sd.connected }}</font></td>
+      {% else %}
+        <td align="left"><font color="red">{{ sd.connected }}</font></td>
+      {% endif %}
+      <td align="left">{{ sd.buildername }}</td>
+      <td align="right">{{ sd.build_num }}</td>
+      <td align="left">{{ sd.step }}</td>
+      <td align="left">{{ sd.owner }}</td>
+      <td align="left">{{ sd.enginehost_branch }}</td>
+      <td align="left">{{ sd.env_branch }}</td>
+      <td align="left">{{ sd.saf_branch }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>
+

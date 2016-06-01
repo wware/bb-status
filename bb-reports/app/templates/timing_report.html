@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>{{ title }} -- Buildbot Reports</title>
+    <style>
+    table {
+      width: 100%;
+      border-spacing: 10px 0px;
+      border-collapse: separate;
+    }
+    th {
+      font-size: medium;
+      white-space: nowrap;
+    }
+    td {
+      font-size: medium;
+      white-space: nowrap;
+    }
+    tr td:last-child {
+      width: 100%;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Buildbot Reports: {{ title }} (last 50 runs)</h1>
+    <hr>
+    <table>
+    <tr>
+      <th align="left"><u>Build #</u></th>
+      <th align="left"><u>Builder</u></th>
+      <th align="left"><u>Test List</u></th>
+      <th align="left"><u>Owner</u></th>
+      <th align="left"><u>Submitted</u></th>
+      <th align="left"><u>Completed</u></th>
+      <th align="left"><u>Status</u></th>
+      <th align="left"><u>Elapsed Time</u></th>
+      <th align="left"><u>Comparison Report (if available)</u></th>
+    </tr>
+    {% for rd in run_data %}
+    <tr>
+      <td align="right">{{ rd.build_num }}</td>
+      <td align="left">{{ rd.buildername }}</td>
+      <td align="left">{{ rd.list_name }}</td>
+      <td align="left">{{ rd.owner }}</td>
+      <td align="left">{{ rd.submitted }}</td>
+      <td align="left">{{ rd.completed }}</td>
+      <td align="left">{{ rd.results }}</td>
+      <td align="right">{{ rd.elapsed }}</td>
+      <td align="left"><a href="{{ rd.comp_report }}">{{ rd.comp_report }}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>
+
